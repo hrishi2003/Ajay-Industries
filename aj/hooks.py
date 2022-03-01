@@ -27,6 +27,9 @@ app_license = "MIT"
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
+fixtures = ['Custom Field','Client Script', 'Property Setter', 'Print Format']
+
+
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
@@ -95,13 +98,15 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
+doc_events = {
+	"Sales Invoice" : {"on_submit": "aj.custom.si.ac",
+	}
 # 	"*": {
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
 #	}
-# }
+}
 
 # Scheduled Tasks
 # ---------------
