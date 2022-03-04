@@ -100,7 +100,13 @@ fixtures = ['Custom Field','Client Script', 'Property Setter', 'Print Format']
 
 doc_events = {
 	"Sales Invoice" : {"on_submit": "aj.custom.si.ac",
-	}
+	},
+	"Purchase Invoice" : {
+		"on_submit": "aj.custom.purchase_invoice.ac",
+	},
+	"Payment Entry" : {
+		"on_submit": "aj.custom.payment_entry.ac",
+	},
 # 	"*": {
 # 		"on_update": "method",
 # 		"on_cancel": "method",

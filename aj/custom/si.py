@@ -16,8 +16,9 @@ def ac(self,method=None):
         print('gllllllllllllllllllllll',gl.voucher_no,'gggggggggggggggggggggggggggggggggcvvvvvvvvvv%%%%%%%%%%')
         print('gllllllllllllllllllllll',gl.debit,'gggggggggggggggggggggggggggggggggcvvvvvvvvvv%%%%%%%%%%')
         frappe.db.set_value('GL Entry', {'account':self.debit_to,'voucher_no':self.name,'posting_date':self.posting_date}, 'debit', gl.debit)
+        default_company = frappe.db.get_single_value('Global Defaults', 'default_company')
         doc = frappe.new_doc('GL Entry')
-        doc.account = 'Custom Account Gst - A'
+        doc.account = self.gst_account
         doc.voucher_no = self.name
         doc.voucher_type = 'Sales Invoice'
         doc.debit = self.total_taxes_and_charges
@@ -25,8 +26,7 @@ def ac(self,method=None):
         doc.party_type = 'Customer'
         doc.posting_date = self.posting_date
         doc.party = self.customer
-        doc.company = 'AICL'
-        doc.cost_center = 'Main - A'
+        doc.company = default_company
         doc.insert()
 
     

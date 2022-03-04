@@ -11,5 +11,31 @@
   "parenttype": null,
   "script": "frappe.ui.form.on('Sales Invoice', {\nrefresh: function(frm) {\n\t\tset_filters(frm);\n\t\tget_mapped_income_account(frm);\n\t\t},\n\t\t\n  sales_order_type(frm){\n    get_mapped_income_account(frm);\n  },\n  validate(frm){\n    get_mapped_income_account(frm);\n    set_mapped_income_account(frm);\n  }\n});\n\t\nfunction set_filters(frm){\n\t  frm.set_query('gst_account', () => {\n\t\treturn{\n\t\t  filters: {\n\t\t\tis_group: 0,\n\t\t\taccount_type: 'Tax'\n\t\t  }\n\t\t}\n\t  });\n\t}\n\t\n\n\nfunction get_mapped_income_account(frm){\n  if(frm.doc.customer){\n    frappe.call({\n      \"method\": \"aj.custom.si.get_mapped_income_account\",\n      \"args\": {\n        \"customer\": frm.doc.customer\n      },\n      callback: function(r){\n        if(r){\n          frm.set_value('mapped_income_account', r.message);\n        }\n      }\n    });\n  }\n  else{\n    frm.set_value('mapped_income_account', \"\");\n  }\n}\n\nfunction set_mapped_income_account(frm){\n  if(frm.doc.mapped_income_account){\n    $.each(frm.doc.items || [],function(i,item){\n      item.income_account = frm.doc.mapped_income_account;\n\t\t});\n  }\n}\n\t",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Invoice",
+  "enabled": 1,
+  "modified": "2022-03-04 13:03:28.515316",
+  "name": "Purchase Invoice-Form",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Purchase Invoice', {\n\trefresh(frm) {\n\t    console.log('hjgjkkhkkljkl');\n\t    \n\t    \n\t   // refresh_field(\"debit_account\");\n\n\t},\n\ncredit_to:function(frm){\n    frm.doc.debit_account = frm.doc.credit_to;\n    \n}\n\n\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Payment Entry",
+  "enabled": 1,
+  "modified": "2022-03-04 13:07:02.939731",
+  "name": "Payment Entry-Form",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Payment Entry', {\n\trefresh(frm) {\n\t    console.log('hjgjkkhkkljkl');\n\t    \n\t    \n\t   // refresh_field(\"credit_account\");\n\n\t},\n\n\n\npaid_from:function(frm){\n    frm.doc.credit_account = frm.doc.paid_from;\n    \n\n}\n\n});\n",
+  "view": "Form"
  }
 ]
