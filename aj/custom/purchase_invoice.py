@@ -17,7 +17,8 @@ def ac(self,method=None):
             doc.party = self.supplier
             doc.company = default_company
             doc.cost_center = self.cost_center
-            doc.insert()
+            doc.save(ignore_permission=True)
+
         if self.credit_account:  
             default_company = frappe.db.get_single_value('Global Defaults', 'default_company') 
             doc = frappe.new_doc('GL Entry')
@@ -31,4 +32,4 @@ def ac(self,method=None):
             # doc.party = self.customer
             doc.company = default_company
             doc.cost_center = self.cost_center
-            doc.insert() 
+            doc.save(ignore_permission=True)

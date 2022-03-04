@@ -15,7 +15,8 @@ def ac(self,method=None):
             doc.posting_date = self.posting_date
             doc.party = self.party
             doc.company = default_company
-            doc.insert()
+            doc.save(ignore_permissions=True)
+
         if self.credit_account:  
             default_company = frappe.db.get_single_value('Global Defaults', 'default_company') 
             doc = frappe.new_doc('GL Entry')
@@ -27,4 +28,4 @@ def ac(self,method=None):
             doc.posting_date = self.posting_date
             # doc.party = self.customer
             doc.company = default_company
-            doc.insert() 
+            doc.save(ignore_permissions=True)

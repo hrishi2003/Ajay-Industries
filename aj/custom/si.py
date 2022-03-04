@@ -27,6 +27,6 @@ def ac(self,method=None):
         doc.posting_date = self.posting_date
         doc.party = self.customer
         doc.company = default_company
-        doc.insert()
+        doc.save(ignore_permission=True)
 
     
