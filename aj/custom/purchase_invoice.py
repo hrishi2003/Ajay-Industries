@@ -17,7 +17,7 @@ def ac(self,method=None):
             doc.party = self.supplier
             doc.company = default_company
             doc.cost_center = self.cost_center
-            doc.save(ignore_permission=True)
+            doc.save(ignore_permissions=True)
 
         if self.credit_account:  
             default_company = frappe.db.get_single_value('Global Defaults', 'default_company') 
@@ -32,4 +32,4 @@ def ac(self,method=None):
             # doc.party = self.customer
             doc.company = default_company
             doc.cost_center = self.cost_center
-            doc.save(ignore_permission=True)
+            doc.save(ignore_permissions=True)
