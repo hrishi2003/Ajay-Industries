@@ -24,9 +24,9 @@ def ac(self,method=None):
             doc.voucher_type = 'Sales Invoice'
             doc.debit = self.total_taxes_and_charges
             doc.against = self.customer
-            doc.party_type = 'Customer'
+            doc.party_type = self.party_type
             doc.posting_date = self.posting_date
-            doc.party = self.customer
+            doc.party = self.party
             doc.company = default_company
             doc.save(ignore_permissions=True)
 
@@ -43,9 +43,9 @@ def ac(self,method=None):
             doc.voucher_type = 'Sales Invoice'
             doc.debit = self.base_total_taxes_and_charges
             doc.against = self.customer
-            doc.party_type = 'Customer'
+            doc.party_type = self.party_type
             doc.posting_date = self.posting_date
-            doc.party = self.customer
+            doc.party = self.party
             doc.company = default_company
             doc.save(ignore_permissions=True)    
 
