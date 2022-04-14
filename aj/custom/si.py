@@ -42,11 +42,13 @@ def ac(self,method=None):
             doc.voucher_no = self.name
             doc.voucher_type = 'Sales Invoice'
             doc.debit = self.base_total_taxes_and_charges
-            doc.against = self.customer
+            # doc.against = self.customer
             doc.party_type = self.party_type
             doc.posting_date = self.posting_date
             doc.party = self.party
             doc.company = default_company
+            for i self.taxes:
+                doc.against = i.account_head
             doc.save(ignore_permissions=True)    
 
     
