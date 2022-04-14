@@ -47,7 +47,7 @@ def ac(self,method=None):
             doc.posting_date = self.posting_date
             doc.party = self.party
             doc.company = default_company
-            for i self.taxes:
+            for i in self.taxes:
                 doc.against = i.account_head
             doc.save(ignore_permissions=True)    
 
