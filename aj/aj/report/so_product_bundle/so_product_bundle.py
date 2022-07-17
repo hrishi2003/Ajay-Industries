@@ -47,21 +47,18 @@ def get_data(filters=None):
 		is_inclusive_tax = False
 		sales_order_doc = frappe.get_doc("Sales Order",so.name)
 		for item in sales_order_doc.packed_items:
-			# sr_no = item.idx if item.idx else ""
 			name = sales_order_doc.name if sales_order_doc.name else ""
 			docstatus = sales_order_doc.docstatus if sales_order_doc.docstatus else ""
 			company = ""
 			customer = sales_order_doc.customer if sales_order_doc.customer else ""
 			date = sales_order_doc.transaction_date if sales_order_doc.transaction_date else ""
 			delivery_date = sales_order_doc.delivery_date if sales_order_doc.delivery_date else ""
-			item_code =  item.item_code if item.item_code else ""
+			item_code = item.item_code if item.item_code or ''
 			parent_item = item.parent_item if item.parent_item else ""
 			status =  sales_order_doc.status if sales_order_doc.status else ""
-			# so_item_code = get_tds_amount_from_purchase_taxes_and_charges(purchase_invoice_doc.name) if purchase_invoice_doc.name else ""
-			item_name = item.item_name if item.item_name else ""
-			from_warehouse = item.warehouse if item.warehouse else ""
-			qty = item.qty if item.qty else ""
-			# so_name = purchase_invoice_doc.due_date if purchase_invoice_doc.due_date else ""
+			item_name = item.item_name if item.item_name or ''
+			from_warehouse = item.warehouse if item.warehouse or ''
+			qty = item.qty if item.qty or ''
 			
 
 			row = [
@@ -81,3 +78,60 @@ def get_data(filters=None):
 			]
 			data.append(row)
 	return data
+
+
+
+# def code(sales_order):
+# 	l=[]
+# 	sales_order_doc = frappe.get_doc("Sales Order",sales_order)
+# 	for i in sales_order_doc.items:
+# 		l.append(i.item_code)
+# 	for item in sales_order_doc.packed_items:
+# 		if item.parent_item not in l:
+# 			l.append(item.parent_item)
+	
+# 	for j in l:
+# 		return j	
+
+# def item_qty(sales_order):
+# 	l=[]
+# 	qty= []
+# 	sales_order_doc = frappe.get_doc("Sales Order",sales_order)
+# 	for i in sales_order_doc.items:
+# 		l.append(i.item_code)
+# 		qty.append(i.qty)
+# 	for item in sales_order_doc.packed_items:
+# 		if item.parent_item not in l:
+# 			qty.append(item.qty)
+
+# 	for j in qty:
+# 		return j	
+
+# def item_names(sales_order):
+# 	name = []
+# 	l=[]
+# 	sales_order_doc = frappe.get_doc("Sales Order",sales_order)
+# 	for i in sales_order_doc.items:
+# 		l.append(i.item_code)
+# 		name.append(i.item_name)
+# 	for item in sales_order_doc.packed_items:
+# 		if item.parent_item not in l:
+# 			name.append(item.item_name)
+
+# 	for j in name:
+# 		return j	
+
+# def item_warehouse(sales_order):
+# 	l=[]
+# 	warehouse = []
+# 	sales_order_doc = frappe.get_doc("Sales Order",sales_order)
+# 	for i in sales_order_doc.items:
+# 		l.append(i.item_code)
+# 		warehouse.append(i.warehouse)
+# 	for item in sales_order_doc.packed_items:
+# 		if item.parent_item not in l:
+# 			warehouse.append(item.warehouse)
+
+# 	for j in warehouse:
+# 		return j	
+
