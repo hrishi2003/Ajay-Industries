@@ -42,7 +42,7 @@ def get_columns():
 def get_data(filters=None):
 	print("get_data")
 	data=[]
-	sales_order_list=frappe.get_all("Sales Order")
+	sales_order_list=frappe.get_all("Sales Order",filters=[['docstatus','in',['0','1']]])
 	for so in sales_order_list:
 		is_inclusive_tax = False
 		sales_order_doc = frappe.get_doc("Sales Order",so.name)
