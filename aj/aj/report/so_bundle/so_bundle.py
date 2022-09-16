@@ -11,18 +11,14 @@ from frappe import _
 def execute(filters=None):
 	columns, data = get_columns(), get_data(filters)
 	data_n = []
-	print(f'\n\n\n\n\n\n\n\n\n\n{data_n}\n\n\n\n\n\n\n\n\n')
 	for elem in data:
-		# print(f'\n\n\n\n\n\n\n\n\n\nelem{elem}\n\n\n\n\n\n\n\n\n')
 		if elem not in data_n:
 			data_n.append(elem)
-	print(f'\n\n\n\n\n\n\n\n\n\n{data_n}\n\n\n\n\n\n\n\n\n')
 	return columns, data_n
 
 def get_columns():
 	print("get_columns")
 	return[
-		# _("Sr No.") + ":Data:100",
 		_("Name") + ":Link/Sales Order:150",
 		_("Docstatus") + ":Data:150",
 		_("Company") + ":Link/Company:150",
@@ -32,11 +28,9 @@ def get_columns():
 		_("Item Code") + ":Data:120",
 		_("Parent Item") + ":Data:130",
 		_("Status") + ":Data:150",
-		# _("Sales Order: Item Code") + ":Data:120",
 		_("Item Name") + ":Data:120",
 		_("From Warehouse") + ":Data:140",
 		_("Qty") + ":Data:100",
-		# _("Sales Order: Name") + ":Data:150",
 	]
 
 def get_data(filters=None):
@@ -64,7 +58,6 @@ def get_data(filters=None):
 						qty = item.qty if item.qty else ''
 
 						row = [
-							# sr_no,
 							name,
 							docstatus,
 							company,
@@ -101,7 +94,6 @@ def get_data(filters=None):
 							qty = items.qty if items.item_code not in l else ''
 
 						row = [
-							# sr_no,
 							name,
 							docstatus,
 							company,
@@ -132,7 +124,6 @@ def get_data(filters=None):
 				qty = items.qty if items.qty else ''
 
 				row = [
-					# sr_no,
 					name,
 					docstatus,
 					company,
