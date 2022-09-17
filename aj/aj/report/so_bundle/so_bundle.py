@@ -54,7 +54,7 @@ def get_data(filters=None):
 						parent_item = item.parent_item if item.parent_item else ""
 						status =  sales_order_doc.status if sales_order_doc.status else ""
 						item_name = item.item_name if item.item_name else ''
-						from_warehouse = item.warehouse if item.warehouse else ''
+						from_warehouse = items.warehouse if items.warehouse else ''
 						qty = item.qty if item.qty else ''
 
 						row = [
